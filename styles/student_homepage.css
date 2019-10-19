@@ -8,7 +8,14 @@ body{
   position: relative;
   text-align: center;
 }
-.course_list{
+
+.buttonBox{
+  text-align: right;
+  width: 80%;
+  margin: 2%;
+}
+
+.courseList{
   text-align: center;
   width: 80%;
   height: 60%;
@@ -26,7 +33,7 @@ body{
   display: flex;
 }
 
-.courseBoxTitle{
+.courseListTitle{
   font-size: 3vw;
   margin: 2%;
   background-color:  #92a8d1;
