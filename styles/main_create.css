@@ -198,6 +198,42 @@ a:hover,a:focus{
     border-radius: 10px;
 }
 
+/*Professor tab styling*/
+.professor_name_input_box, .professor_email_input_box, .professor_password_input_box, .professor_verify_password_input_box, .professor_courses_input_box {
+    display: flex;
+    /* flex-direction: row; */
+    margin-left: 50px;
+    margin-top: 25px;
+}
+
+.professor_name_input, .professor_email_input, .professor_password_input, .professor_verify_password_input, .professor_courses_input {
+    margin-left: 5px;
+    border-radius: 10px;
+    height: 40px;
+}
+
+.professor_name_input {
+    width: 595px;
+}
+.professor_email_input {
+    width: 599px;
+}
+.professor_password_input {
+    width: 570px;
+}
+.professor_verify_password_input {
+    width: 579px;
+}
+.professor_courses_input {
+    width: 580px;
+}
+
+.professor_name_label, .professor_email_label, .professor_password_label, .professor_verify_password_label, .professor_courses_label {
+    margin-top: 7px;
+    font-weight: bold;
+    font-size: 110%;
+}
+
 body {
     width: 100%;
     height: 100%;

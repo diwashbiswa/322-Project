@@ -143,8 +143,35 @@
             <!-- Professor's info: Name, email, password x2, courses they teach -->
             <div role="tabpanel" class="tab-pane" id="create_account_tab_professor">
               <div class="professor_info_inputs">
-
+                <div class="professor_name_input_box">
+                    <label class="professor_name_label">Name:</label>
+                    <input type="text" class="professor_name_input" placeholder="Enter your full name"/> 
+                </div>
+                <div class="professor_email_input_box">
+                  <label class="professor_email_label">Email:</label>
+                  <input type="text" class="professor_email_input" placeholder="Enter your WSU email"/>
+                </div>
+                <div class="professor_password_input_box">
+                  <label class="professor_password_label">Password:</label>
+                  <input type="password" class="professor_password_input" placeholder="Enter a new password"/>
+                </div>
+                <div class="professor_verify_password_input_box">
+                  <label class="professor_verify_password_label">Confirm:</label>
+                  <input type="password" class="professor_verify_password_input" placeholder="Verify your password"/>
+                </div>
+                <div class="professor_courses_input_box">
+                  <label class="professor_courses_label">Courses:</label>
+                  <input type="text" class="professor_courses_input" placeholder="Enter the courses you currently teach separated by coma"/>
+                </div>
               </div>
+              <div class="cancel_submit_button_box">
+                  <div class="cancel_button_box">
+                    <input type="submit" class="cancel_button btn btn-warning" value="Cancel"/>
+                  </div>
+                  <div class="create_account_button_box">
+                    <input type="submit" class="create_account_button btn btn-success" value="Create"/>
+                  </div>
+                </div>
             </div>
 
           </div>
