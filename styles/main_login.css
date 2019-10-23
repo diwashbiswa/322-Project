@@ -10,7 +10,7 @@ header {
 
 .header_row {
     display: flex;
-    flex-direction: row;
+    flex-direction: row;;
 }
 
 .wsu_logo {
@@ -92,7 +92,8 @@ body {
     height: 100%;
     position: relative;
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url("../images/wsu_background.jpg");
+    /* background-image: url("../images/wsu_background.jpg"); */
+    background: url(../images/wsu_background.jpg) no-repeat center center fixed; 
     background-repeat: no-repeat;
     background-size: 100%;
     background-position: center;
@@ -114,4 +115,5 @@ body {
     .student_box{
         width: 32%;
     }
+}
 }
