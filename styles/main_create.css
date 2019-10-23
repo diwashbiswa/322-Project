@@ -23,6 +23,68 @@ header {
     margin-top: 5px;
 }
 
+/*Tab styling*/
+a:hover,a:focus{
+    outline: none;
+    text-decoration: none;
+}
+.tab .nav-tabs{
+    background-color: white;
+}
+.tab .nav-tabs{
+	position: fixed;
+    top: 140px;
+    margin-left: 510px;
+    margin-top: 32px;
+    border-bottom: none;
+    z-index: 2;
+}
+.tab .nav-tabs li{
+    margin: 0;
+}
+.tab .nav-tabs li a{
+    display: block;
+    padding: 7px 7px;
+    background: #ffffff;
+    color: #d39102;
+    text-transform: uppercase;
+    text-align: center;
+	border: 1px solid  #ffebc8;
+	border-bottom: none;
+    margin-right: 0;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    /*transition: all 0.3s ease 0s;*/
+}
+
+.tab .nav-tabs li a:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #e9e9e9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    perspective-origin: 50% 100%;
+    transform: perspective(900px) rotate3d(1, 0, 0, 90deg);
+    transform-origin: 50% 100% 0;
+    transition: transform 0.4s ease 0s, background-color 0.4s ease 0s;
+}
+.tab .nav-tabs li.active a:after{
+    /* background: #eee6d2; */
+    background: rgb(47, 149, 222);
+    transform: perspective(900px) rotate3d(1, 0, 0, 0deg);
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li a:hover{
+	color: #4b489b;
+	font-weight: bold;
+    border: none;
+}
+/*tab styling ends*/
+
 .create_account_box_background_container {
     height: 100%;
     display: flex;
@@ -39,6 +101,13 @@ header {
     text-align: center;
 
     opacity: 0.9;
+}
+
+.create_account_label {
+    font-size: 130%;
+    font-weight: bold;
+    display: flex;
+    margin-left: 270px;
 }
 
 .name_id_input_box, .major_gpa_graduation_box {
@@ -72,12 +141,16 @@ header {
 .email_input_box, .password_input_box, .verify_password_input_box {
     margin-top: 30px;
     margin-left: 30px;
-    /* display: flex; */
-    /* flex-direction: row; */
+    display: flex;
+    flex-direction: row;
 }
 
 .email_input, .password_input, .verify_password_input {
     height: 40px;
+}
+
+.email_label, .password_label, .verify_password_label {
+    margin-top: 7px;
 }
 
 .email_input {
@@ -90,7 +163,7 @@ header {
 }
 
 .verify_password_input {
-    width: 535px;
+    width: 608px;
 }
 
 .password_input, .verify_password_input {
@@ -108,7 +181,7 @@ header {
 }
 
 .create_account_button_box {
-    margin-left: 475px;
+    margin-left: 480px;
     margin-top: 30px;
 }
 

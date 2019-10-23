@@ -39,25 +39,19 @@
     </div>
   </header>
 
-<!-- 
-  Info to create account:
-  For Student:
-   - Name, ID, Grade level, email(WSU), password(x2), major, gpa, graduation date
-  For Professor:
-   - Name, email(WSU), password(x2), course they teach
- -->
-
   <div class="create_account_box_background_container">
     <div class="create_account_box_background">
+
       <div class="wsu_full_logo" > <img src="images/wsu_full_logo.png"> </div>
       <div class="create_account_label_box"> 
-        <label class="create_account_label">Create your account</label> 
+        <label class="create_account_label">Create your account as</label> 
       </div>
+
       <div class="student_professor_switch_tab">
         <div class="tab" role="tabpanel">
           <ul class="nav nav-tabs" role="tablist">
-            <li class="student_tab active"> <a href="#create_account_student" role="tab" data-toggle="tab">Student</a></li>
-            <li class="student_tab"> <a href="#create_account_professor" role="tab" data-toggle="tab">Professor</a></li>
+            <li class="student_tab active"> <a href="#create_account_tab_student" role="tab" data-toggle="tab">Student</a></li>
+            <li class="professor_tab"> <a href="#create_account_tab_professor" role="tab" data-toggle="tab">Professor</a></li>
           </ul>
 
           <div class="tab-content tabs">
@@ -131,7 +125,7 @@
                   <input type="password" class="password_input" placeholder="Enter a new password"/> 
                 </div>
                 <div class="verify_password_input_box"> 
-                  <label class="verify_password_label">Confirm Password:</label>
+                  <label class="verify_password_label">Confirm:</label>
                   <input type="password" class="verify_password_input" placeholder="Verify your password"/> 
                 </div>
                 
@@ -143,15 +137,24 @@
                     <input type="submit" class="create_account_button btn btn-success" value="Create"/>
                   </div>
                 </div>
-                
-                
               </div>
             </div>
+
+            <!-- Professor's info: Name, email, password x2, courses they teach -->
+            <div role="tabpanel" class="tab-pane" id="create_account_tab_professor">
+              <div class="professor_info_inputs">
+
+              </div>
+            </div>
+
           </div>
 
+
+        
+        </div>
         </div>
       </div>
-
+      </div>
 
     </div>
   </div>
