@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Application Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="images/wsu-cougarhead.png">
+  <link rel="stylesheet" type="text/css" href="styles/ApplicationPage.css">
+  <!--link to the font family-->
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Butcherman|Source+Sans+Pro&display=swap" rel="stylesheet">
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script type="text/javascript" src="scripts/rateprofessor.js"></script>
+  <script type="text/javascript">
+        // This is a jQuery convention to say that once all the files
+        // load, the function RateProfessor.start() should run.
+        // This function is defined in the rateprofessor.js
+       $(function () {
+           ApplicationPage().start();
+       });
+  </script>
+  
+</head>
+
+<body>
+  <div class="background">  
+
+    <header>
+        <div class = "header_row">
+                <div class="WSU_logo1">
+                    <img src="images/WSU.png" class="wsu_logo1">
+                </div>
+                <div class="page_name">
+                    Application Page
+                </div> 
+                <div class="wsu_logo_col">
+                    <img src="images/wsu-cougarhead.png" class="wsu_logo2">
+                </div>       
+        </div>          
+    </header>  
+  <!-- <div class="background">   -->
+    <div class="application_title">
+      Apply to be a TA
+    </div>
+
+    <section class="application_box">
+      <div class="applicant_full_name">
+        <input type="text" class="firstname_input" placeholder="First Name">
+        <input type="text" class="lastname_input" placeholder="Last Name">
+      </div>
+      <input type="text" class="major_input" placeholder="Major">
+      <div class="GPA_and_GL">
+        <input type="text" class="GPA_input" placeholder="GPA">
+        <label class="grade_label">Grade Level: </label>
+        <select class="grade_input" name="grade">
+          <option value="freshman">Freshman</option>
+          <option value="sophomore">Sophomore</option>
+          <option value="junior">Junior</option>
+          <option value="senior">Senior</option>
+        </select>
+      </div>
+
+      <div class="classes_applying_for">
+            <label class="course1_label">Most preffered course: </label>
+              <select class="course1_input" name="course1">
+                <option value="4">CptS 121</option>
+                <option value="3">CptS 122</option>
+                <option value="2">CptS 223</option>
+                <option value="1">CptS 322</option>
+              </select>
+              <label class="course2_label">Second preffered course: </label>
+              <select class="course2_input" name="course2">
+                <option value="5">CptS 121</option>
+                <option value="4">CptS 122</option>
+                <option value="3">CptS 223</option>
+                <option value="2">CptS 322</option>
+                <option value="1">None</option>
+              </select>
+              <label class="course3_label">Least preffered course: </label>
+              <select class="course3_input" name="course3">
+                <option value="5">CptS 121</option>
+                <option value="4">CptS 122</option>
+                <option value="3">CptS 223</option>
+                <option value="2">CptS 322</option>
+                <option value="1">None</option>
+              </select>
+      </div>
+
+      <div class="TA_service">
+          <label class="served_as_TA">Served as TA before? </label>
+          <select class="TA_service_input" name="TA_before">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+          <input type="text" class="TA_class_input" placeholder="If so, which class?">
+      </div>
+
+    </section>
+
+    <div class="cancel_and_apply">
+      <div class="cancel_button"> 
+          <button type="select_btn" class="btn btn-outline-warning">Cancel</button>
+      </div>  
+      <div class="apply_button"> 
+          <button type="select_btn" class="btn btn-outline-danger">Apply</button>
+      </div>  
+    </div>
+  </div>
+</body>
+
+</html>
