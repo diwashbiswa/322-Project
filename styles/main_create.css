@@ -1,0 +1,266 @@
+header {
+    top: 0;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    height: 130px;
+    /* background-color:gray; */
+    position: fixed;
+}
+
+.header_row {
+    display: flex;
+    flex-direction: row;;
+}
+
+.wsu_logo {
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 92vw;
+}
+
+.logo_col {
+    margin-top: 5px;
+}
+
+/*Tab styling*/
+a:hover,a:focus{
+    outline: none;
+    text-decoration: none;
+}
+.tab .nav-tabs{
+    background-color: white;
+}
+.tab .nav-tabs{
+	position: fixed;
+    top: 140px;
+    margin-left: 510px;
+    margin-top: 32px;
+    border-bottom: none;
+    z-index: 2;
+}
+.tab .nav-tabs li{
+    margin: 0;
+}
+.tab .nav-tabs li a{
+    display: block;
+    padding: 7px 7px;
+    background: #ffffff;
+    color: #d39102;
+    text-transform: uppercase;
+    text-align: center;
+	border: 1px solid  #ffebc8;
+	border-bottom: none;
+    margin-right: 0;
+    overflow: hidden;
+    z-index: 2;
+    position: relative;
+    /*transition: all 0.3s ease 0s;*/
+}
+
+.tab .nav-tabs li a:after{
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #e9e9e9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    perspective-origin: 50% 100%;
+    transform: perspective(900px) rotate3d(1, 0, 0, 90deg);
+    transform-origin: 50% 100% 0;
+    transition: transform 0.4s ease 0s, background-color 0.4s ease 0s;
+}
+.tab .nav-tabs li.active a:after{
+    /* background: #eee6d2; */
+    background: rgb(47, 149, 222);
+    transform: perspective(900px) rotate3d(1, 0, 0, 0deg);
+}
+.tab .nav-tabs li.active a,
+.tab .nav-tabs li a:hover{
+	color: #4b489b;
+	font-weight: bold;
+    border: none;
+}
+/*tab styling ends*/
+
+.create_account_box_background_container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create_account_box_background {
+    background-color: grey;
+    width: 800px;
+    height: 550px;
+    margin-top: 100px;
+    border-radius: 10px;
+    text-align: center;
+
+    opacity: 0.9;
+}
+
+.create_account_label {
+    font-size: 130%;
+    font-weight: bold;
+    display: flex;
+    margin-left: 270px;
+}
+
+.name_id_input_box, .major_gpa_graduation_box {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.name_input_box {
+    margin-left: 30px;
+    margin-right: 60px;
+}
+
+.name_input, .id_input {
+    width: 250px;
+    height: 40px;
+}
+
+.major_input_box {/*, .gpa_input_box, .graduation_input_box { */
+    margin-left: 30px;
+}
+
+.gpa_input_box, .graduation_input_box {
+    margin-left: 15px;
+}
+
+.major_input, .gpa_input, .month_input, .year_input {
+    height: 40px;
+}
+
+.email_input_box, .password_input_box, .verify_password_input_box {
+    margin-top: 30px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.email_input, .password_input, .verify_password_input {
+    height: 40px;
+}
+
+.email_label, .password_label, .verify_password_label {
+    margin-top: 7px;
+}
+
+.email_input {
+    width: 627px;
+    margin-left: 7px;
+}
+
+.password_input {
+    width: 598px;
+}
+
+.verify_password_input {
+    width: 608px;
+}
+
+.password_input, .verify_password_input {
+    margin-left: 7px;
+}
+
+.cancel_submit_button_box {
+    display: flex;
+    flex-direction: row;
+}
+
+.cancel_button_box {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.create_account_button_box {
+    margin-left: 480px;
+    margin-top: 30px;
+}
+
+.create_account_button, .cancel_button {
+    width: 170%;
+}
+
+.name_label, .id_label, .gpa_label, .major_label, .graduation_label, .email_label, .password_label, .verify_password_label {
+    font-weight: bold;
+}
+
+/*input boxes for rounded corner*/
+.name_input, .id_input, .major_input, .gpa_input, .month_input, .year_input, .email_input, .password_input, .verify_password_input {
+    border-radius: 10px;
+}
+
+/*Professor tab styling*/
+.professor_name_input_box, .professor_email_input_box, .professor_password_input_box, .professor_verify_password_input_box, .professor_courses_input_box {
+    display: flex;
+    /* flex-direction: row; */
+    margin-left: 50px;
+    margin-top: 25px;
+}
+
+.professor_name_input, .professor_email_input, .professor_password_input, .professor_verify_password_input, .professor_courses_input {
+    margin-left: 5px;
+    border-radius: 10px;
+    height: 40px;
+}
+
+.professor_name_input {
+    width: 595px;
+}
+.professor_email_input {
+    width: 599px;
+}
+.professor_password_input {
+    width: 570px;
+}
+.professor_verify_password_input {
+    width: 579px;
+}
+.professor_courses_input {
+    width: 580px;
+}
+
+.professor_name_label, .professor_email_label, .professor_password_label, .professor_verify_password_label, .professor_courses_label {
+    margin-top: 7px;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    font-family: Arial, Helvetica, sans-serif;
+    /* background-image: url("../images/wsu_background.jpg"); */
+    background: url(../images/wsu_background.jpg) no-repeat center center fixed; 
+    /* background-repeat: no-repeat; */
+    background-size: 100%;
+    background-position: center;
+}
+
+/*This will flex the student information boxes in the professor page for different screen sizes*/
+@media screen and (max-width: 800px){
+	.student_box{
+        width: 98%;
+    }
+}
+
+@media screen and (min-width: 800px) and (max-width: 1200px){
+	.student_box{
+        width: 48%;
+    }
+    
+@media screen and (min-width: 1200px){
+    .student_box{
+        width: 32%;
+    }
+}
+}
