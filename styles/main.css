@@ -10,7 +10,7 @@ header {
 
 .header_row {
     display: flex;
-    flex-direction: row;;
+    flex-direction: row;
 }
 
 .wsu_logo {
@@ -114,5 +114,4 @@ body {
     .student_box{
         width: 32%;
     }
-}
 }
