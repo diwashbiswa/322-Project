@@ -23,17 +23,17 @@ header {
     margin-top: 5px;
 }
 
-.login_box_background_container {
+.create_account_box_background_container {
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.login_box_background {
+.create_account_box_background {
     background-color: grey;
-    width: 400px;
-    height: 500px;
+    width: 800px;
+    height: 550px;
     margin-top: 100px;
     border-radius: 10px;
     text-align: center;
@@ -41,6 +41,89 @@ header {
     opacity: 0.9;
 }
 
+.name_id_input_box, .major_gpa_graduation_box {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+}
+
+.name_input_box {
+    margin-left: 30px;
+    margin-right: 60px;
+}
+
+.name_input, .id_input {
+    width: 250px;
+    height: 40px;
+}
+
+.major_input_box {/*, .gpa_input_box, .graduation_input_box { */
+    margin-left: 30px;
+}
+
+.gpa_input_box, .graduation_input_box {
+    margin-left: 15px;
+}
+
+.major_input, .gpa_input, .month_input, .year_input {
+    height: 40px;
+}
+
+.email_input_box, .password_input_box, .verify_password_input_box {
+    margin-top: 30px;
+    margin-left: 30px;
+    /* display: flex; */
+    /* flex-direction: row; */
+}
+
+.email_input, .password_input, .verify_password_input {
+    height: 40px;
+}
+
+.email_input {
+    width: 627px;
+    margin-left: 7px;
+}
+
+.password_input {
+    width: 598px;
+}
+
+.verify_password_input {
+    width: 535px;
+}
+
+.password_input, .verify_password_input {
+    margin-left: 7px;
+}
+
+.cancel_submit_button_box {
+    display: flex;
+    flex-direction: row;
+}
+
+.cancel_button_box {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.create_account_button_box {
+    margin-left: 475px;
+    margin-top: 30px;
+}
+
+.create_account_button, .cancel_button {
+    width: 170%;
+}
+
+.name_label, .id_label, .gpa_label, .major_label, .graduation_label, .email_label, .password_label, .verify_password_label {
+    font-weight: bold;
+}
+
+/*input boxes for rounded corner*/
+.name_input, .id_input, .major_input, .gpa_input, .month_input, .year_input, .email_input, .password_input, .verify_password_input {
+    border-radius: 10px;
+}
 
 body {
     width: 100%;
