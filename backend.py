@@ -1,8 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import flask_sqlalchemy as sqlalchemy
-from werkzeug.security import generate_password_hash, check_password_hash   # for password hashing
-# instructions for passwords found at: https://dev.to/kaelscion/authentication-hashing-in-sqlalchemy-1bem
+
 import datetime
 
 app = Flask(__name__)
@@ -19,7 +18,6 @@ class Student(db.Model):
     major = db.Column(db.String(255))
     graduation_date = db.Column(db.String(255)) # mm/yyyy
     courses = db.relationship('TAAplication',backref='applicant', lazy='dynamic')
-    password_hash = db.Column(db.String(128))   # hashed by functions below
 
 class Course(db.Model):
     cid = db.Column(db.Integer, primary_key=True)
@@ -40,16 +38,8 @@ class Instructor(db.Model):
     Iid = db.Column(db.Integer, primary_key=True)
     Iname = db.Column(db.String(255))
     Iemail = db.Column(db.String(255))
-    password_hash = db.Column(db.String(128))   # hashed by functions below
 
 base_url = '/api/'
-
-# password hashing
-def set_password(self, password):
-    self.password_hash = generate_password_hash(password)
-
-def check_password(self, password):
-    return check_password_hash(self.password_hash, password)
 
 # get all student data
 @app.route(base_url + 'student', methods=["GET"])
@@ -75,19 +65,32 @@ def getCourses():
         )
     return jsonify({"status": 1, "result": result})
 
-#join of Student and TAApplication
-@app.route(base_url + 'studentapplies', methods=["GET"])
-def student_applies():
-    query = Student.query.join(TAAplication, Student.sid==TAAplication.sid).join(Instructor, TAAplication.cid==Course.cid).join(Instructor,TAAplication.cid==Instructor.Iid).all()
+# get all instructor data
+@app.route(base_url + 'instructor', methods=["GET"])
+def getInstructor():
+    query = Instructor.query.all()
 
     result = []
     for row in query:
         result.append(
-            row_to_obj_studentapplies(row)
+            row_to_obj_instructor(row)
         )
     return jsonify({"status": 1, "result": result})
 
-#creates a student
+
+# #join of Student and TAApplication
+# @app.route(base_url + 'studentapplies', methods=["GET"])
+# def student_applies():
+#     query = Student.query.join(TAAplication, Student.sid==TAAplication.sid).join(Instructor, TAAplication.cid==Course.cid).join(Instructor,TAAplication.cid==Instructor.fid).all()
+
+#     result = []
+#     for row in query:
+#         result.append(
+#             row_to_obj_studentapplies(row)
+#         )
+#     return jsonify({"status": 1, "result": result})
+
+# creates a student
 @app.route(base_url + 'addStudent', methods=['POST'])
 def add2Student():
     student = Student(**request.json)
@@ -97,7 +100,27 @@ def add2Student():
 
     return jsonify({"status": 1, "student": row_to_obj_student(student)}), 200
 
-#creates an instructor
+# creates a course
+@app.route(base_url + 'addCourse', methods=['POST'])
+def add2Course():
+    course = Course(**request.json)
+    db.session.add(course)
+    db.session.commit()
+    db.session.refresh(course)
+
+    return jsonify({"status": 1, "course": row_to_obj_course(course)}), 200
+
+# # creates TA-application
+# @app.route(base_url + 'addTAApplication', methods=['POST'])
+# def add2TAApplication():
+#     applies = TAAplication(**request.json)
+#     db.session.add(applies)
+#     db.session.commit()
+#     db.session.refresh(applies)
+
+#     return jsonify({"status": 1, "application": row_to_obj_applies(applies)}), 200
+
+# creates instructor
 @app.route(base_url + 'addInstructor', methods=['POST'])
 def add2Instructor():
     instructor = Instructor(**request.json)
@@ -108,35 +131,6 @@ def add2Instructor():
     return jsonify({"status": 1, "instructor": row_to_obj_instructor(instructor)}), 200
 
 
-# creates a course
-@app.route(base_url + 'addCourse', methods=['POST'])
-def add2Course():
-    course = Course(**request.json)
-    db.session.add(course)
-    db.session.commit()
-    db.session.refresh(course)
-
-    return jsonify({"status": 1, "college": row_to_obj_course(course)}), 200
-
-# creates college-application
-@app.route(base_url + 'addApplies', methods=['POST'])
-def add2Applies():
-    applies = Applies(**request.json)
-    db.session.add(applies)
-    db.session.commit()
-    db.session.refresh(applies)
-
-    return jsonify({"status": 1, "applies": row_to_obj_applies(applies)}), 200
-
-# creates status entry
-@app.route(base_url + 'addStatus', methods=['POST'])
-def add2Status():
-    appStatus = Status(**request.json)
-    db.session.add(appStatus)
-    db.session.commit()
-    db.session.refresh(appStatus)
-
-    return jsonify({"status": 1, "appStatus": row_to_obj_status(appStatus)}), 200
 
 
 
@@ -150,15 +144,6 @@ def row_to_obj_student(row):
         }
     return row
 
-
-def row_to_obj_instructor(row):
-    row = {
-        "Iid": row.Iid,
-        "Iname": row.Iname,
-        "Iemail": row.Iemail
-    }
-    return row
-
 def row_to_obj_course(row):
     row = {
             "cid": row.cid,
@@ -168,45 +153,46 @@ def row_to_obj_course(row):
         }
     return row
 
-def row_to_obj_applies(row):
-    row = {
-            "sid": row.sid,
-            "cid": row.cid,
-            "statusCode": row.statusCode,
-            "lastupdated_at": row.lastupdated_at,
-            "statusDesc": row.statusDesc.Iname,
-            "statusDesc": row.statusDesc.Iemail,
-            "courseInfo": row.courseInfo.ctitle,
-            "courseInfo": row.courseInfo.cdescription,
-            "courseInfo": row.courseInfo.cmaxTA
-        }
-    return row
+# def row_to_obj_applies(row):
+#     row = {
+#             "sid": row.sid,
+#             "cid": row.cid,
+#             "statusCode": row.statusCode,
+#             "lastupdated_at": row.lastupdated_at,
+#             "statusDesc": row.statusDesc.Iname,
+#             "statusDesc": row.statusDesc.Iemail,
+#             "courseInfo": row.courseInfo.ctitle,
+#             "courseInfo": row.courseInfo.cdescription,
+#             "courseInfo": row.courseInfo.cmaxTA
+#         }
+#     return row
 
-def row_to_obj_studentapplies(row):
-    collegesApplied = []
-    for c in row.colleges.all():
-        collegesApplied.append(row_to_obj_applies(c))
+# def row_to_obj_studentapplies(row):
+#     collegesApplied = []
+#     for c in row.colleges.all():
+#         collegesApplied.append(row_to_obj_applies(c))
         
-    row = {
-            "sid": row.sid,
-            "name": row.name,
-            "lastname": row.lastname,
-            "highschool": row.highschool,
-            "GPA": row.GPA,
-            "SAT": row.SAT,
-            "colleges" : collegesApplied
-    }
-    return row
+#     row = {
+#             "sid": row.sid,
+#             "name": row.name,
+#             "lastname": row.lastname,
+#             "highschool": row.highschool,
+#             "GPA": row.GPA,
+#             "SAT": row.SAT,
+#             "colleges" : collegesApplied
+#     }
+#     return row
 
-def row_to_obj_status(row):
+def row_to_obj_instructor(row):
     row = {
-            "statusCode": row.statusCode,
-            "statusText": row.statusText
+            "Iid": row.Iid,
+            "Iname": row.Iname,
+            "Iemail": row.Iemail
         }
     return row
 
 def main():
-    db.create_all()
+    # db.create_all()
     app.run()
 
 if __name__ == '__main__':

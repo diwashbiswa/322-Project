@@ -1,6 +1,7 @@
 function Professor_Homepage()
 {
     var apiUrl = 'http://127.0.0.1:5000/api/';
+    
 
     var makeGetRequest = function(url, onSuccess, onFailure) 
     {
