@@ -22,6 +22,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </script>
+  <script type="text/javascript" src="scripts/student_homepage.js"></script>
+  <script type="text/javascript">
+    $(function(){
+      StudentHomepage().start();
+    });
+  </script>
 
   </head>
 
@@ -46,7 +52,7 @@
           <div>Served as TA:</div>
           <div>STATUS:</div>
         </div>
-        <div class="courseData">
+        <div class="courseData" id="box1">
           <div class="courseID">CS 321</div>
           <div class="grade">A-</div>
           <div class="whenTookCourse">Fall 2019</div>
@@ -64,7 +70,7 @@
           <div>Served as TA:</div>
           <div>STATUS:</div>
         </div>
-        <div class="courseData">
+        <div class="courseData" id="box2">
           <div class="courseID">MATH 154</div>
           <div class="grade">B+</div>
           <div class="whenTookCourse">Fall 2019</div>
@@ -82,7 +88,7 @@
           <div>Served as TA:</div>
           <div>STATUS:</div>
         </div>
-        <div class="courseData">
+        <div class="courseData" id="box3">
           <div class="courseID">PHYS 101</div>
           <div class="grade">B</div>
           <div class="whenTookCourse">Spring 2018</div>

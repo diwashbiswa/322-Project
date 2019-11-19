@@ -1,7 +1,11 @@
-function Professor_Homepage()
+function StudentHomepage()
 {
     var apiUrl = 'https://bee-myy-taa.herokuapp.com/api/';
-    
+
+    // Boxes of course data in HTML
+    var box1 = document.getElementById("box1");
+    var box2 = document.getElementById("box2");
+    var box3 = document.getElementById("box3");
 
     var makeGetRequest = function(url, onSuccess, onFailure) 
     {
@@ -29,8 +33,11 @@ function Professor_Homepage()
 
     var start = function()
     {
-        var i = 0;
-    };
-    
+        var x = box1.firstElementChild;
+        var xText = x.innerHTML;
+        x = x.nextElementSibling;
+        xText = x.innerHTML;
+    }
+
     return {start: start};
 }
