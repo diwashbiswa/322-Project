@@ -5,7 +5,7 @@ function BeMyTA () {
     var apiUrl = 'https://bee-myy-taa.herokuapp.com/';
 
 
-    var add_student; // add_professor form, value set in the "start" method below
+    var add_student; // add_student form, value set in the "start" method below
 
 
     // PRIVATE METHODS
@@ -29,7 +29,7 @@ function BeMyTA () {
 
     /**
      * HTTP POST request
-     * @param  {string}   url       URL path, e.g. "/api/allprofs"
+     * @param  {string}   url       URL path, e.g. "/api/addStudent"
      * @param  {Object}   data      JSON data to send in request body
      * @param  {function} onSuccess   callback method to execute upon request success (200 status)
      * @param  {function} onFailure   callback method to execute upon request failure (non-200 status)
@@ -53,14 +53,10 @@ function BeMyTA () {
      * @return {None}
      */
     var attachStudentHandler = function(e) {   
-        // FINISH ME (Task 6): add a handler for the 'Cancel' button to cancel the review and go back to "FIND YOUR PROFESSOR" (#list) tab
-        // add_student.on('click', '.cancel_button', function (e) {
-        //     //activate and show the #list tab
+        // add_student.on('click', '.cancel_create_student_button', function (e) {
         //     $('.nav a[href="#login"]').tab('show');
         // });
         
-        // add a handler to the 'Add Professor' (.submit_prof_input) button to
-        // create a new professor
 
         // The handler for the Post button in the form
         add_student.on('click', '.create_account_button', function (e) {
@@ -74,11 +70,12 @@ function BeMyTA () {
             std.password = add_student.find('.password_input').val();
 
             var onSuccess = function(data) {
-                // FINISH ME (Task 6): activate and show the #list tab
-                // $('.nav a[href="#student_homepage"]').tab('show');
+                //navigate to the next page upon successful creation of account -- to student homepage
+                $('.nav a[href="#student_homepage"]').tab('show');
+
                 var student = data.std;
 
-                Console.log('Inside onSuccess funciton for creating student account!');
+                Console.log('Inside onSuccess function for creating student account!');
             };
             var onFailure = function() { 
                 //FINISH ME (Task 6): display an alert box to notify that the professor could not be created ; print the errror message in the console.
