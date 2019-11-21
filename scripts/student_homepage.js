@@ -4,8 +4,7 @@ function StudentHomepage()
 
     // Boxes of course data in HTML
     var box1 = document.getElementById("box1");
-    var box2 = document.getElementById("box2");
-    var box3 = document.getElementById("box3");
+    var courseList = $(".courseList");
 
     var makeGetRequest = function(url, onSuccess, onFailure) 
     {
@@ -31,12 +30,40 @@ function StudentHomepage()
         });
     };
 
+    // reads courses from backend to UI
+    var displayCourses = function()
+    {
+        // delete everything from coursebox
+        courseList.html('');
+
+        var onSuccess = function(data)
+        {
+            data.course_list.forEach(element =>
+                {
+                    insertCourse(element, true);
+                });
+        };
+
+        var onFailure = function()
+        {
+            alert('displayCourses - Failed');
+            console.error('displayCourses - Failed');
+        };
+
+        console.log("displayCourses: making GET request");
+        makeGetRequest("/courses", onSuccess, onFailure);
+    };
+
+    // adds course to UI, beginning is bool to prepend
+    var insertCourse = function(course, beginning)
+    {
+        var newElem = $(box1);
+
+    }
+
     var start = function()
     {
-        var x = box1.firstElementChild;
-        var xText = x.innerHTML;
-        x = x.nextElementSibling;
-        xText = x.innerHTML;
+        displayCourses();
     }
 
     return {start: start};
