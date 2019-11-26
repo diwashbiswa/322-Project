@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>Post Position</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="images/wsu-cougarhead.png">
+  <link rel="stylesheet" type="text/css" href="styles/ApplicationPage.css">
+  <!--link to the font family-->
+  <!--<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/css?family=Butcherman|Source+Sans+Pro&display=swap" rel="stylesheet">
+
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script type="text/javascript" src="scripts/make_TA.js"></script>
+  <script type="text/javascript">
+       $(function () {
+//           MakeTA_Page().start();
+       });
+  </script>
+  
+</head>
+
+<body>
+  <div class="background">  
+
+    <header>
+        <div class = "header_row">
+                <div class="WSU_logo1">
+                    <img src="images/WSU.png" class="wsu_logo1">
+                </div>
+                <div class="page_name">
+                    Post a TA Position
+                </div> 
+                <div class="wsu_logo_col">
+                    <img src="images/wsu-cougarhead.png" class="wsu_logo2">
+                </div>       
+        </div>          
+    </header>  
+  <!-- <div class="background">   -->
+
+    <section class="course_box">
+      <div class="course_id_and_name">
+        <input type="text" class="course_id" placeholder="Course ID">
+        <input type="text" class="course_title" placeholder="Course Title">
+      </div>
+      <div class="course_instructor">
+        <input type="text" class="instructor_firstname" placeholder="Instructor First Name">
+        <input type="text" class="instructor_lastname" placeholder="Instructor Last Name">
+      </div>
+      <div>
+        <input type="text" class="maxTA" placeholder="Max # of TAs">
+      </div>
+
+    </section>
+
+    <div class="cancel_and_apply">
+      <div class="cancel_button">
+        <form action="student_homepage.html">
+          <button type="select_btn" class="btn btn-outline-warning">Cancel</button>
+        </form> 
+      </div>  
+      <div class="apply_button"> 
+        <form action="student_homepage.html">
+          <button type="select_btn" class="btn btn-outline-danger">Submit</button>
+        </form>
+      </div>  
+    </div>
+  </div>
+</body>
+
+</html>
