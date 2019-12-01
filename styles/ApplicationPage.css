@@ -204,7 +204,7 @@ header {
     font-size: 130%;
 }
 
-.course_id_and_name{
+.course_id_and_maxTA{
     display: flex;
 }
 
@@ -224,15 +224,6 @@ header {
     height: 50px;
     margin-left: 5px;
     margin-right: 50px;
-}
-
-.course_title{
-    display: block;
-    width: 50%;
-    margin-top: 20px;
-    /* margin-bottom: 20px; */
-    height: 50px;
-    margin-left: 50px;
 }
 
 .maxTA{
