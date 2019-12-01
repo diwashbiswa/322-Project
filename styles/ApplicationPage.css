@@ -183,16 +183,6 @@ header {
 
 
 /*  make_TA_page    */
-.courses_taught_box{
-    background-color: rgba(1, 31, 129, 0.356);
-    margin-left:50px;
-    margin-right: 50px;
-    margin-bottom: 20px;
-    padding: 30px;
-    border:15px black;
-    font-size: 130%;
-    display: flexbox;
-}
 
 .course_box{
     background-color: rgba(129, 1, 1, 0.26);

@@ -77,3 +77,20 @@ body{
   margin-right: 3%;
   padding: 5%;
 }
+
+.courses_taught_box{
+  background-color: rgba(0, 140, 255, 0.137);
+  margin-left:50px;
+  margin-right: 50px;
+  margin-bottom: 20px;
+  padding: 30px;
+  border:15px black;
+  font-size: 130%;
+  display: flexbox;
+}
+
+.postButtonBox{
+  text-align: right;
+  width: 80%;
+  margin: 2%;
+}
