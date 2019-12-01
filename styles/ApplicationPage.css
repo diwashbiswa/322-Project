@@ -183,6 +183,16 @@ header {
 
 
 /*  make_TA_page    */
+.courses_taught_box{
+    background-color: rgba(1, 31, 129, 0.356);
+    margin-left:50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    padding: 30px;
+    border:15px black;
+    font-size: 130%;
+    display: flexbox;
+}
 
 .course_box{
     background-color: rgba(129, 1, 1, 0.26);
@@ -198,8 +208,12 @@ header {
     display: flex;
 }
 
-.course_instructor{
-    display: flex;
+.page_title_profName{
+    width: calc(100%);
+    margin-top: 20px;
+    text-align: center;
+    color: black;
+    padding-right: 300px;
 }
 
 .course_id{
@@ -212,15 +226,6 @@ header {
     margin-right: 50px;
 }
 
-.instructor_firstname{
-    display: block;
-    width: 50%;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    height: 50px;
-    margin-left: 5px;
-}
-
 .course_title{
     display: block;
     width: 50%;
@@ -228,15 +233,6 @@ header {
     /* margin-bottom: 20px; */
     height: 50px;
     margin-left: 50px;
-}
-
-.instructor_lastname{
-    display: block;
-    width: 50%;
-    margin-top: 10px;
-    /* margin-bottom: 20px; */
-    height: 50px;
-    margin-left: 10px;
 }
 
 .maxTA{
