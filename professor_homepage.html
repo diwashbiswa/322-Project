@@ -21,18 +21,46 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="scripts/professor_homepage.js"></script>
+    <script type="text/javascript">
+      $(function(){
+        Professor_Homepage().start();
+      });
+    </script>
   </head>
 
   <header>
-    <article>Professor Homepage</article>
+    <div class = "header_row">
+        <div class="WSU_logo1">
+            <img src="images/WSU.png" class="wsu_logo1">
+        </div>
+        <div class="page_title_profName">
+            Bob DoMath
+        </div> 
+        <div class="wsu_logo_col">
+            <img src="images/wsu-cougarhead.png" class="wsu_logo2">
+        </div>      
+    </div>   
   </header>
 
   <body>
-    <div class="buttonBox">
+  <div class="profID">22648120</div> 
+    <section class="buttonBox">
+      <div>
+        
+      </div>
       <form action="login.html">
         <button class="logout_btn btn-primary btn-lg">LOG OUT</button>
       </form>
-    </div>
+    </section>
+
+    <section class="courses_taught_box">
+      Courses Taught:
+      <div>CS 321</div>
+      <div>CS 322</div>
+      <div>MATH 216</div>
+    </section>
+
     <article class="studentList">
       <div class="studentListTitle">Students That Applied</div>
       <article class="studentBox">
@@ -116,6 +144,12 @@
         </div>
       </article>
     </article>
+
+    <div class="postButtonBox">
+      <form action="make_TA_page.html">
+        <button class="post_position_btn btn-primary btn-lg">POST A NEW POSITION</button>
+      </form>
+    </div>
   </body>
 
 </html>
