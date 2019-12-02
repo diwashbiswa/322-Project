@@ -51,21 +51,9 @@ class Instructor(db.Model):
 
 base_url = '/api/'
 
-# get student with specific id -- sid -- example url: /api/student?sid=1
-@app.route(base_url + 'student', methods=["GET"])
-def getStudent():
-
-    curr_id = request.args.get('sid', None)
-
-    row = Student.query.filter_by(sid=curr_id).first()
-
-    return jsonify({"status": 1, "student": row_to_obj_student(row)}), 200
-
-
 # get all student data
-@app.route(base_url + 'students', methods=["GET"])
-def getAllStudents():
-
+@app.route(base_url + 'student', methods=["GET"])
+def getStudents():
     query = Student.query.all()
 
     result = []
@@ -73,7 +61,7 @@ def getAllStudents():
         result.append(
             row_to_obj_student(row)
         )
-    return jsonify({"status": 1, "student": result})
+    return jsonify({"status": 1, "result": result})
 
 #get all course data
 @app.route(base_url + 'courses', methods=["GET"])
@@ -121,7 +109,6 @@ def add2Student():
     db.session.refresh(student)
 
     return jsonify({"status": 1, "student": row_to_obj_student(student)}), 200
-
 
 # creates a course
 @app.route(base_url + 'addCourse', methods=['POST'])
