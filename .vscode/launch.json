@@ -8,7 +8,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome",
-            "url": "C:/Users/dayto/OneDrive/Documents/WSU/teambeta/student_homepage.html",
+            "url": "C:/Users/dayto/OneDrive/Documents/WSU/teambeta/professor_homepage.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
