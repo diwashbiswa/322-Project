@@ -9,7 +9,7 @@ function BeMyTA () {
 
     var login; // login form
 
-    //var logged_in_id = "2";
+    var sid;
 
     // PRIVATE METHODS
       
@@ -77,47 +77,59 @@ function BeMyTA () {
             else if (password == "") {
                 alert("Password field empty! Enter your password!");
             } 
-            else if (username == "test" && password == "test")
+            else
             {
-                //navigate to account homepage
-                window.location.href = "student_homepage.html";
-
-                //function where it displays the student info in the student account page -- drew's function
-            } else {
-                console.log("Username/password don't match");
-                alert("Incorrect username or password! Try again!");
+                let requestURLReview = '/api/students';
+                makeGetRequest(requestURLReview, onSuccess, onFailure);
             }
-        })
-    }
+
+            var onSuccess = function(data) {
+                var students = data.student; //student object retrieved from the server
+      
+                for (var i = 0; i < students.length; i++) {
+                    //insertReview(all_reviews[i], true)
+                    if (username == students[i].email) { //username exists
+                        if (password == students[i].password) { //password match
+                            sid = students[i].sid;
+                            window.location.href = "student_homepage.html";
+                            console.log("username and password match");
+
+                            var std_name = students[i].name;
+                            var wsu_id = students[i].wsu_id;
+
+                            //displayStudentHomepage(std_name, wsu_id);
+                        } else {
+                            alert("Incorrect password");
+                        }
+                    } else {
+                        alert("Incorrect username! Try again!");
+                    }
+
+                }
+                var user = data.email;
+                var pass = data.password;
+
+                if (username == user && password == pass) {
+                    //navigate to account homepage
+                    window.location.href = "student_homepage.html";
+                    console.log("username and password match");
+                }
+            };
+            var onFailure = function() { 
+                console.error('retrieving student data - Failed');
+                alert("Error login in! Try again!");
+            };
+
+            //let selected_prof_id = $('header .selected_prof').attr('id');
+            //let sample_sid = 8;
+               
+        });
+    };
     
+    // //populate the student accout homepage with the information -- Drew
+    // displayStudentHomepage(std_name, wsu_id) = function(e) {
 
-        //     var onSuccess = function(data) {
-
-        //         data.result.forEach(element => {
-        //             //navigate to the next page upon successful login -- to student/professor homepage
-        //             if (element.email == username && element.password == password)
-        //             {
-        //                 //$('.nav a[href="#student_homepage"]').tab('show');
-        //                 //window.location.pathname = "path/to/student_homepage.html/";
-        //                 window.location.pathname = "http://www.google.com"
-
-        //                 //function where it displays the student info in the student account page -- drew's function
-        //             } else {
-        //                 console.log("Username/password don't match");
-        //                 alert("Incorrect username or password! Try again!");
-        //             }
-        //         });
-
-        //     };
-        //     var onFailure = function() { 
-        //         //FINISH ME (Task 6): display an alert box to notify that the professor could not be created ; print the errror message in the console.
-        //         console.error('Add new Student- Failed'); 
-        //     };
-            
-        //     let requestURL = '/api/students';
-        //     makeGetRequest(requestURL, onSuccess, onFailure);
-        // })
-
+    // };
     /**
      * Add event handlers for submitting the create review form.
      * @return {None}
