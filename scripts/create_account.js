@@ -180,19 +180,20 @@ function BeMyTA () {
      * @return {None}
      */
     var attachStudentHandler = function(e) {   
-        // add_student.on('click', '.cancel_create_student_button', function (e) {
-        //     $('.nav a[href="#login"]').tab('show');
-        // });
+        add_student.on('click', '.cancel_create_std_button', function (e) {
+            e.preventDefault();
+            window.location.href = "login.html";
+            console.log("Cancel button clicked -- Student!");
+        });
         
-
-        // The handler for the Post button in the form
+        // The handler for the Create button in the form
         add_student.on('click', '.create_account_button', function (e) {
             e.preventDefault (); // Tell the browser to skip its default click action
 
             var std = {}; // Prepare the student object to send to the server
 
             std.name = add_student.find('.name_input').val();
-            std.wsu_id = add_student.find('.id_input').val();
+            std.wsuid = add_student.find('.id_input').val();
             std.email = add_student.find('.email_input').val();
             std.password = add_student.find('.password_input').val();
 
@@ -203,11 +204,9 @@ function BeMyTA () {
                 Console.log('Inside onSuccess function for creating student account!');
             };
             var onFailure = function() { 
-                //FINISH ME (Task 6): display an alert box to notify that the professor could not be created ; print the errror message in the console.
                 console.error('Add new Student- Failed'); 
             };
             
-            // FINISH ME (Task 6): make a POST request to add the professor
             let postRequestURL = '/api/addStudent';
             console.log(postRequestURL);
             console.log(std);
