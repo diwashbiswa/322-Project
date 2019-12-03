@@ -176,7 +176,7 @@ function BeMyTA () {
     };
 
     /**
-     * Add event handlers for submitting the create review form.
+     * Add event handlers for submitting the create student form.
      * @return {None}
      */
     var attachStudentHandler = function(e) {   
@@ -199,7 +199,10 @@ function BeMyTA () {
 
             var onSuccess = function(data) {
                 //navigate to the next page upon successful creation of account -- to student homepage
-                $('.nav a[href="#student_homepage"]').tab('show');
+                window.location.href = "student_homepage.html";
+
+                //populate the student homepage with correct info
+                //can locally do it first -- send the info above to the new page and display the info
 
                 Console.log('Inside onSuccess function for creating student account!');
             };
@@ -214,6 +217,46 @@ function BeMyTA () {
         });
 
     };
+
+    /**
+     * Add event handlers for submitting the create professor form.
+     * @return {None}
+     */
+    var attachProfessorHandler = function(e) {   
+        add_professor.on('click', '.cancel_create_prof_button', function (e) {
+            e.preventDefault();
+            window.location.href = "login.html";
+            console.log("Cancel button clicked -- Professor!");
+        });
+        
+        // The handler for the Create button in the form
+        add_professor.on('click', '.create_prof_account_button', function (e) {
+            e.preventDefault (); // Tell the browser to skip its default click action
+
+            var prof = {}; // Prepare the student object to send to the server
+
+            prof.Iname = add_professor.find('.professor_name_input').val();
+            prof.Iemail = add_professor.find('.professor_email_input').val();
+            prof.Ipassword = add_professor.find('.professor_password_input').val();
+
+            var onSuccess = function(data) {
+                //navigate to the next page upon successful creation of account -- to student homepage
+                window.location.href = "professor_homepage.html";
+
+                //populate the professor homepage with correct info
+                //can locally do it first -- send the info above to the new page and display the info
+
+                Console.log('Inside onSuccess function for creating professor account!');
+            };
+            var onFailure = function() { 
+                console.error('Add new professor- Failed'); 
+            };
+            
+            let postRequestURL = '/api/addInstructor';
+            makePostRequest(postRequestURL, prof, onSuccess, onFailure);
+        });
+
+    };
     
     /**
      * Start the app by displaying the list of the professors and attaching event handlers.
@@ -224,10 +267,12 @@ function BeMyTA () {
         login = $("form#loginForm");
         attachLoginHandler();
 
-
         //add_student = $(".student_info_inputs form#addStudentForm");
         add_student = $("form#addStudentForm");
         attachStudentHandler();
+
+        add_professor = $("form#addProfessorForm");
+        attachProfessorHandler();
 
         //stdTemplateHtml = $(".studentlist")[0].outerHTML;
         //insertStudent();
