@@ -23,6 +23,18 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  
+  <script type="text/javascript" src="scripts/create_account.js"></script>
+  <script type="text/javascript">
+      // This is a jQuery convention to say that once all the files
+      // load, the function RateProfessor.start() should run.
+      // This function is defined in the rateprofessor.js
+      $(function () {
+        BeMyTA().start();
+      });
+  </script>
   
 </head>
 
@@ -42,22 +54,26 @@
     <div class="login_box_background">
       <div class="wsu_full_logo" > <img src="images/wsu_full_logo.png"> </div>
       <div class="user_big_icon"> <img src="images/user_big_icon.png"> </div>
+      
       <div class="login_label_box"> 
         <label class="login_label">Log into your account</label> 
       </div>
-      <div class="username_input_box"> 
-        <input type="text" class="username_input" placeholder="Username"/> 
-      </div>
-      <div class="password_input_box"> 
-        <input type="password" class="password_input" placeholder="Password"/> 
-      </div>
-      <div class="sign_in_button_box">
-        <form action="student_homepage.html">
-          <input type="submit" class="sign_in_button btn btn-primary" value="Sign In"/>
-        </form>        
-      </div>
+
+      <form id="loginForm" method="GET">
+        <div class="username_input_box"> 
+          <input type="text" class="username_input" placeholder="Username"/> 
+        </div>
+        <div class="password_input_box"> 
+          <input type="password" class="password_input" placeholder="Password"/> 
+        </div>
+      
+        <div class="sign_in_button_box">
+          <input type="submit" class="sign_in_button btn btn-primary" value="Sign In"/>      
+        </div>
+      </form>
+
       <div class="create_account_box">
-        Not registered? <a href="create_account.html"> Create you account </a>
+        Not registered? <a href="create_account.html"> Create your account </a>
       </div>
     </div>
   </div>

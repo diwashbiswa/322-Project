@@ -21,6 +21,16 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="scripts/create_account.js"></script>
+  <script type="text/javascript">
+        // This is a jQuery convention to say that once all the files
+        // load, the function RateProfessor.start() should run.
+        // This function is defined in the rateprofessor.js
+       $(function () {
+           BeMyTA().start();
+       });
   </script>
   <script type="text/javascript" src="scripts/student_homepage.js"></script>
   <script type="text/javascript">
@@ -33,14 +43,24 @@
 
   <header>
     <article>Student Homepage</article>
+    <!-- <div class="student_box">
+      <div class="student_name">Drew McLaurin</div>
+      <div class="wsu_id">11585661</div>
+    </div> -->
   </header>
 
   <body>
+    <section class="studentlist">
+      <div class="std_name"> Placeholder </div>
+      <div class="wsu_id"> Placeholder </div>
+    </section>
+
     <div class="buttonBox">
       <form action="login.html">
         <button class="logout_btn btn-primary btn-lg">LOG OUT</button>
       </form>
     </div>
+
     <article class="courseList">
       <div class="courseListTitle">Courses You've Applied For</div>
       <article class="course_box">

@@ -3,7 +3,6 @@ function Professor_Homepage()
     var apiUrl = 'https://bee-myy-taa.herokuapp.com/api/';
     var profID = $(".profID");
     var profName = $(".page_title_profName");
-    var retrievedProfInfo;  // set in getProfessor
     var logged_in_id = "2";
 
     var makeGetRequest = function(url, onSuccess, onFailure) 
@@ -35,12 +34,11 @@ function Professor_Homepage()
         var onSuccess = function(data) 
         {
             console.log("getProfessor: onSuccess");
-            retrievedProfInfo = data.result;
-            retrievedProfInfo.forEach(profInfo => {
-                if (profInfo.Iid == logged_in_id)
+            data.result.forEach(element => {
+                if (element.Iid == logged_in_id)
                 {
-                    profID[0].innerText = profInfo.Iid;
-                    profName[0].innerText = profInfo.Iname;
+                    profID[0].innerText = element.Iid;
+                    profName[0].innerText = element.Iname;
                 }
             });
         };
