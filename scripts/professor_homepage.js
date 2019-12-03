@@ -4,7 +4,7 @@ function Professor_Homepage()
     var profID = $(".profID");
     var profName = $(".page_title_profName");
     var retrievedProfInfo;  // set in getProfessor
-    var logged_in_id = "2";
+    var logged_in_id = "4";
 
     var makeGetRequest = function(url, onSuccess, onFailure) 
     {
