@@ -37,7 +37,6 @@ header {
     height: auto;
 }
 
-
 .page_name{
     width: calc(100%);
     margin-top: 20px;
@@ -179,4 +178,115 @@ header {
 	.application_box{
         width: 92%;
     }
+}
+
+
+/*  make_TA_page    */
+
+.course_box{
+    background-color: rgba(129, 1, 1, 0.26);
+    margin-left:50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+    padding: 30px;
+    border:15px black;
+    font-size: 130%;
+}
+
+.course_id_and_maxTA{
+    display: flex;
+}
+
+.page_title_profName{
+    width: calc(100%);
+    margin-top: 20px;
+    text-align: center;
+    color: black;
+    padding-right: 300px;
+}
+
+.course_id{
+    display: block;
+    width: 10%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 50px;
+    margin-left: 5px;
+    margin-right: 50px;
+}
+
+.maxTA{
+    display: block;
+    width: 10%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 50px;
+    margin-left: 5px;
+    margin-right: 50px;
+}
+
+.major_input{
+    display: block;
+    width: 65%;
+    margin-top: 0px;
+    /* margin-bottom: 20px; */
+    height: 50px;
+    margin-left: 5px;
+}
+
+.GPA_and_GL{
+    display: flex;
+}
+
+.grade_label{
+    padding-right: 5px;
+    margin-left: 35px;
+    margin-top: 30px;
+}
+.grade_input{
+    width: 30%;
+    margin-top: 20px;
+    height: 50px;
+}
+
+.GPA_input{
+    display: block;
+    width: 20%;
+    margin-top: 20px;
+    height: 50px;
+    margin-left: 5px;
+}
+
+
+.classes_applying_for{
+    display: flex;
+    margin-top: 20px;
+    margin-left: -30px;
+}
+
+.course1_label, .course2_label, .course3_label{
+    padding-right: 5px;
+    margin-left: 35px;
+}
+
+.TA_service{
+    display: flex;
+    margin-top: 20px;
+    margin: block;
+    margin-left: 5px;
+    height: 50px;
+}
+
+.served_as_TA{
+    padding-right: 10px;
+}
+
+.cancel_button{
+    margin-left: 50px;
+    display: inline-block;
+    margin-bottom: 30px;
+}
+.apply_button{
+    float: right;
+    margin-right: 50px;
 }

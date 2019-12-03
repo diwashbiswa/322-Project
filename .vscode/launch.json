@@ -7,8 +7,8 @@
         {
             "type": "chrome",
             "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "${workspaceFolder}/student_homepage.html",
+            "name": "Launch Chrome",
+            "url": "C:/Users/dayto/OneDrive/Documents/WSU/teambeta/professor_homepage.html",
             "webRoot": "${workspaceFolder}"
         }
     ]
