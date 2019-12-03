@@ -290,3 +290,8 @@ header {
     float: right;
     margin-right: 50px;
 }
+
+.profID{
+    text-align: center;
+    font-size: large;
+}

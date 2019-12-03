@@ -4,7 +4,7 @@ function Professor_Homepage()
     var profID = $(".profID");
     var profName = $(".page_title_profName");
     var retrievedProfInfo;  // set in getProfessor
-    var logged_in_id = "4";
+    var logged_in_id = "2";
 
     var makeGetRequest = function(url, onSuccess, onFailure) 
     {
@@ -32,15 +32,15 @@ function Professor_Homepage()
 
     var getProfessor = function()
     {
-        var onSuccess = function(data) 
+        var onSuccess = function(data)
         {
             console.log("getProfessor: onSuccess");
             retrievedProfInfo = data.result;
-            retrievedProfInfo.forEach(profInfo => {
-                if (profInfo.Iid == logged_in_id)
+            retrievedProfInfo.forEach(prof_backend => {
+                if (prof_backend.Iid == logged_in_id)
                 {
-                    profID[0].innerText = profInfo.Iid;
-                    profName[0].innerText = profInfo.Iname;
+                    profID[0].innerText = prof_backend.Iid;
+                    profName[0].innerText = prof_backend.Iname;
                 }
             });
         };
@@ -48,8 +48,10 @@ function Professor_Homepage()
             console.error('getProfessor - Failed'); 
         };
         profID[0].innerText = "";
+        profName[0].innerText = "";
         makeGetRequest("instructor", onSuccess, onFailure);
     }
+
 
     var start = function()
     {
