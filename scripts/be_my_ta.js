@@ -61,23 +61,7 @@ function BeMyTA () {
             var username = login.find('.username_input').val();
             var password = login.find('.password_input').val();
 
-            //1. search for username in the database
-            //2. if exist, get the sid of the student
-            //3. check to make sure the username and password match the entered username and password
-            //4. save the sid globally, so when other page is navigated, populate the student homepage
-            //   with the sid
-            //5. if doesn't exist, give error message
-
-            if (username == "" && password == "") {
-                alert("Both username and password field empty! Please enter your username and password!");
-            }
-            else if (username == "") {
-                alert("Username field empty! Enter your username!");
-            } 
-            else if (password == "") {
-                alert("Password field empty! Enter your password!");
-            } 
-            else if (username == "test" && password == "test")
+            if (username == "test" && password == "test")
             {
                 //navigate to account homepage
                 window.location.href = "student_homepage.html";
@@ -160,24 +144,26 @@ function BeMyTA () {
     };
     
     /**
-     * Start the app by displaying the list of the professors and attaching event handlers.
+     * Start of the app
      * @return {None}
      */
     var start = function() {
 
+        //lets the user login
         login = $("form#loginForm");
-        attachLoginHandler();
+        attachLoginHandler(); 
 
 
-        //add_student = $(".student_info_inputs form#addStudentForm");
+        //create student account
         add_student = $("form#addStudentForm");
         attachStudentHandler();
+
+        //create professor account
 
     };
     
 
     // PUBLIC METHODS
-    // any private methods returned in the hash are accessible via RateProfessor.key_name, e.g. RateProfessor.start()
     return {
         start: start
     };
