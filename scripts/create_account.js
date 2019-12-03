@@ -7,9 +7,15 @@ function BeMyTA () {
 
     var add_student; // add_student form, value set in the "start" method below
 
+    var std_homepage;
+
     var login; // login form
 
     var sid;
+
+    var full_name;
+    var wsu_email;
+    var std_id;
 
     // PRIVATE METHODS
       
@@ -68,21 +74,6 @@ function BeMyTA () {
             //   with the sid
             //5. if doesn't exist, give error message
 
-            if (username == "" && password == "") {
-                alert("Both username and password field empty! Please enter your username and password!");
-            }
-            else if (username == "") {
-                alert("Username field empty! Enter your username!");
-            } 
-            else if (password == "") {
-                alert("Password field empty! Enter your password!");
-            } 
-            else
-            {
-                let requestURLReview = '/api/students';
-                makeGetRequest(requestURLReview, onSuccess, onFailure);
-            }
-
             var onSuccess = function(data) {
                 var students = data.student; //student object retrieved from the server
       
@@ -91,19 +82,25 @@ function BeMyTA () {
                     if (username == students[i].email) { //username exists
                         if (password == students[i].password) { //password match
                             sid = students[i].sid;
+                            
+                            full_name = students[i].name;
+                            wsu_email = students[i].email;
+                            std_id = students[i].wsuid;
+
+                            //insertStudent(full_name, std_id);
+
+                            //navigate to new page
                             window.location.href = "student_homepage.html";
-                            console.log("username and password match");
+                            
+                            //console.log("username and password match");
 
-                            var std_name = students[i].name;
-                            var wsu_id = students[i].wsu_id;
-
-                            //displayStudentHomepage(std_name, wsu_id);
                         } else {
                             alert("Incorrect password");
                         }
-                    } else {
-                        alert("Incorrect username! Try again!");
-                    }
+                    } 
+                    // else {
+                    //     alert("Incorrect username! Try again!");
+                    // }
 
                 }
                 var user = data.email;
@@ -120,16 +117,64 @@ function BeMyTA () {
                 alert("Error login in! Try again!");
             };
 
+            if (username == "" && password == "") {
+                alert("Both username and password field empty! Please enter your username and password!");
+            }
+            else if (username == "") {
+                alert("Username field empty! Enter your username!");
+            } 
+            else if (password == "") {
+                alert("Password field empty! Enter your password!");
+            } 
+            else
+            {
+                let requestURL = '/api/students';
+                makeGetRequest(requestURL, onSuccess, onFailure);
+            }
+
             //let selected_prof_id = $('header .selected_prof').attr('id');
             //let sample_sid = 8;
                
         });
     };
     
-    // //populate the student accout homepage with the information -- Drew
-    // displayStudentHomepage(std_name, wsu_id) = function(e) {
+    // //populates the student homepage with the correct information
+    // var displayStudentHomepage = function() {
+    //     // Prepare the AJAX handlers for success and failure
+    //      var onSuccess = function(data) {
+    //          var jsondata = data.student;
+    //          insertStudent(jsondata, true);
 
+    //      };
+    //      var onFailure = function() { 
+    //          console.error('List all students - Failed'); 
+    //      };
+    //      let requestUrl = '/api/student?sid='+sid;
+    //      makeGetRequest(requestUrl, onSuccess, onFailure);
+ 
     // };
+
+    // var insertStudent = function(name, id) {
+    //     var student_name = $(".std_name");
+    //     var student_id = $(".wsu_id");
+
+    //     // student_name[0].innerText = "Hello";
+    //     // student_id[0].innerText = "Sup";
+
+    //     student_name[0].innerText = name;
+    //     student_id[0].innerText = id;
+ 
+    // };
+
+    var insertStudent = function(name, id) {
+        // Start with the template, make a new DOM element using jQuery
+        var newElem = $(stdTemplateHtml);
+  
+        newElem.find('.std_name').text(name);
+        newElem.find('.wsu_id').text(id);
+ 
+    };
+
     /**
      * Add event handlers for submitting the create review form.
      * @return {None}
@@ -184,6 +229,11 @@ function BeMyTA () {
         //add_student = $(".student_info_inputs form#addStudentForm");
         add_student = $("form#addStudentForm");
         attachStudentHandler();
+
+        //stdTemplateHtml = $(".studentlist")[0].outerHTML;
+        //insertStudent();
+        
+        //insertStudent(full_name, std_id);
 
     };
     
