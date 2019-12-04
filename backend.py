@@ -26,7 +26,6 @@ class Student(db.Model):
 class Course(db.Model):
     cid = db.Column(db.Integer, primary_key=True)
     ctitle = db.Column(db.String(255))
-    cdescription = db.Column(db.String(255))
     cmaxTA = db.Column(db.Integer)
 
 # Application database
@@ -153,8 +152,54 @@ def add2Instructor():
 
     return jsonify({"status": 1, "instructor": row_to_obj_instructor(instructor)}), 200
 
+# delete student given an id
+@app.route(base_url + 'deleteStudent', methods=['DELETE'])
+def delete_student():
+    curr_id = request.args.get('sid', None)
+
+    #delete the student
+    Student.query.filter_by(sid=curr_id).delete()
+
+    db.session.commit()
+
+    return jsonify ({"status": 1}), 200
+
+# delete professor given an id
+@app.route(base_url + 'deleteInstructor', methods=['DELETE'])
+def delete_professor():
+    myid = request.args.get('id', None)
+
+    #delete the professor
+    Instructor.query.filter_by(Iid=myid).delete()
+
+    db.session.commit()
+
+    return jsonify ({"status": 1}), 200
+
+# delete courses given an id
+@app.route(base_url + 'deleteCourse', methods=['DELETE'])
+def delete_course():
+    myid = request.args.get('id', None)
+
+    #delete the course
+    Course.query.filter_by(cid=myid).delete()
+
+    db.session.commit()
+
+    return jsonify ({"status": 1}), 200
 
 
+# delete TAAplication given an id
+@app.route(base_url + 'removeStudent', methods=['DELETE'])
+def delete_application():
+    myid = request.args.get('id', None)
+
+    #delete the application
+    TAAplication.query.filter_by(id=myid).delete()
+
+    db.session.commit()
+
+    return jsonify ({"status": 1}), 200
 
 
 def row_to_obj_student(row):
@@ -174,7 +219,6 @@ def row_to_obj_course(row):
     row = {
             "cid": row.cid,
             "ctitle": row.ctitle,
-            "cdescription": row.cdescription,
             "cmaxTA": row.cmaxTA
         }
     return row

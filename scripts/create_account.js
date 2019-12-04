@@ -7,8 +7,8 @@ function BeMyTA () {
 
     // PRIVATE VARIABLES
 
-    var apiUrl = 'https://bee-myy-taa.herokuapp.com';
-    // var apiUrl = 'http://localhost:5000'; //local
+    //var apiUrl = 'https://bee-myy-taa.herokuapp.com';
+    var apiUrl = 'http://localhost:5000'; //local
 
     var add_student; // add_student form, value set in the "start" method below
 
@@ -198,42 +198,84 @@ function BeMyTA () {
     };
 
     /**
-     * Add event handlers for submitting the create review form.
+     * Add event handlers for submitting the create student form.
      * @return {None}
      */
     var attachStudentHandler = function(e) {   
-        // add_student.on('click', '.cancel_create_student_button', function (e) {
-        //     $('.nav a[href="#login"]').tab('show');
-        // });
+        add_student.on('click', '.cancel_create_std_button', function (e) {
+            e.preventDefault();
+            window.location.href = "login.html";
+            console.log("Cancel button clicked -- Student!");
+        });
         
-
-        // The handler for the Post button in the form
+        // The handler for the Create button in the form
         add_student.on('click', '.create_account_button', function (e) {
             e.preventDefault (); // Tell the browser to skip its default click action
 
             var std = {}; // Prepare the student object to send to the server
 
             std.name = add_student.find('.name_input').val();
-            std.wsu_id = add_student.find('.id_input').val();
+            std.wsuid = add_student.find('.id_input').val();
             std.email = add_student.find('.email_input').val();
             std.password = add_student.find('.password_input').val();
 
             var onSuccess = function(data) {
                 //navigate to the next page upon successful creation of account -- to student homepage
-                $('.nav a[href="#student_homepage"]').tab('show');
+                window.location.href = "student_homepage.html";
+
+                //populate the student homepage with correct info
+                //can locally do it first -- send the info above to the new page and display the info
 
                 Console.log('Inside onSuccess function for creating student account!');
             };
             var onFailure = function() { 
-                //FINISH ME (Task 6): display an alert box to notify that the professor could not be created ; print the errror message in the console.
                 console.error('Add new Student- Failed'); 
             };
             
-            // FINISH ME (Task 6): make a POST request to add the professor
             let postRequestURL = '/api/addStudent';
             console.log(postRequestURL);
             console.log(std);
             makePostRequest(postRequestURL, std, onSuccess, onFailure);
+        });
+
+    };
+
+    /**
+     * Add event handlers for submitting the create professor form.
+     * @return {None}
+     */
+    var attachProfessorHandler = function(e) {   
+        add_professor.on('click', '.cancel_create_prof_button', function (e) {
+            e.preventDefault();
+            window.location.href = "login.html";
+            console.log("Cancel button clicked -- Professor!");
+        });
+        
+        // The handler for the Create button in the form
+        add_professor.on('click', '.create_prof_account_button', function (e) {
+            e.preventDefault (); // Tell the browser to skip its default click action
+
+            var prof = {}; // Prepare the student object to send to the server
+
+            prof.Iname = add_professor.find('.professor_name_input').val();
+            prof.Iemail = add_professor.find('.professor_email_input').val();
+            prof.Ipassword = add_professor.find('.professor_password_input').val();
+
+            var onSuccess = function(data) {
+                //navigate to the next page upon successful creation of account -- to student homepage
+                window.location.href = "professor_homepage.html";
+
+                //populate the professor homepage with correct info
+                //can locally do it first -- send the info above to the new page and display the info
+
+                Console.log('Inside onSuccess function for creating professor account!');
+            };
+            var onFailure = function() { 
+                console.error('Add new professor- Failed'); 
+            };
+            
+            let postRequestURL = '/api/addInstructor';
+            makePostRequest(postRequestURL, prof, onSuccess, onFailure);
         });
 
     };
@@ -249,6 +291,8 @@ function BeMyTA () {
         
         attachLoginHandler();
 
+        //add_student = $(".student_info_inputs form#addStudentForm");
+        add_student = $("form#addStudentForm");
         add_student = $(".student_info_inputs form#addStudentForm");
         // studentlist = $(".studentlist");
         // stdTemplateHtml = $(".studentlist .student_box")[0].outerHTML;
@@ -258,6 +302,9 @@ function BeMyTA () {
         
         //add_student = $("form#addStudentForm");
         attachStudentHandler();
+
+        add_professor = $("form#addProfessorForm");
+        attachProfessorHandler();
 
         //stdTemplateHtml = $(".studentlist")[0].outerHTML;
         //insertStudent();
@@ -329,5 +376,3 @@ function StudentHomePage() {
     };
 
 };
-
-
