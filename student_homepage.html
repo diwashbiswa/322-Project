@@ -29,15 +29,15 @@
         // load, the function RateProfessor.start() should run.
         // This function is defined in the rateprofessor.js
        $(function () {
-           BeMyTA().start();
+           StudentHomePage().start();
        });
   </script>
-  <script type="text/javascript" src="scripts/student_homepage.js"></script>
+  <!-- <script type="text/javascript" src="scripts/student_homepage.js"></script>
   <script type="text/javascript">
     $(function(){
       StudentHomepage().start();
     });
-  </script>
+  </script> -->
 
   </head>
 
@@ -51,15 +51,20 @@
 
   <body>
     <section class="studentlist">
-      <div class="std_name"> Placeholder </div>
-      <div class="wsu_id"> Placeholder </div>
+      <article class="student_box">
+        <div class="student_box2">
+          <div class="std_name"> Placeholder </div>
+          <div class="wsu_id"> Placeholder </div>
+        </div>
+
+        <div class="buttonBox">
+          <form action="login.html">
+            <button class="logout_btn btn-primary btn-lg">LOG OUT</button>
+          </form>
+        </div>
+      </article>
     </section>
 
-    <div class="buttonBox">
-      <form action="login.html">
-        <button class="logout_btn btn-primary btn-lg">LOG OUT</button>
-      </form>
-    </div>
 
     <article class="courseList">
       <div class="courseListTitle">Courses You've Applied For</div>
