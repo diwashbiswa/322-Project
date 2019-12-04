@@ -1,9 +1,14 @@
+window.full_name;
+var wsu_email;
+var std_id;
+
+
 function BeMyTA () {
 
     // PRIVATE VARIABLES
 
-    //var apiUrl = 'https://bee-myy-taa.herokuapp.com/';
-    var apiUrl = 'http://localhost:5000'; //local
+    var apiUrl = 'https://bee-myy-taa.herokuapp.com';
+    // var apiUrl = 'http://localhost:5000'; //local
 
     var add_student; // add_student form, value set in the "start" method below
 
@@ -13,9 +18,9 @@ function BeMyTA () {
 
     var sid;
 
-    var full_name;
-    var wsu_email;
-    var std_id;
+
+    var studentlist;
+    var stdTemplateHtml;
 
     // PRIVATE METHODS
       
@@ -83,11 +88,15 @@ function BeMyTA () {
                         if (password == students[i].password) { //password match
                             sid = students[i].sid;
                             
+
                             full_name = students[i].name;
                             wsu_email = students[i].email;
                             std_id = students[i].wsuid;
 
-                            //insertStudent(full_name, std_id);
+                            localStorage.setItem('name', full_name);
+                            localStorage.setItem('id', std_id);
+
+                            insertStudent(full_name, std_id, true);
 
                             //navigate to new page
                             window.location.href = "student_homepage.html";
@@ -166,12 +175,25 @@ function BeMyTA () {
  
     // };
 
-    var insertStudent = function(name, id) {
+    var insertStudent = function(name, id, beginning) {
         // Start with the template, make a new DOM element using jQuery
+        //window.location.href = "student_homepage.html";
+        // studentlist = $(".studentlist");
+        // stdTemplateHtml = $(".studentlist .student_box")[0].outerHTML;
+        // studentlist.HTML('');
+
+
         var newElem = $(stdTemplateHtml);
   
         newElem.find('.std_name').text(name);
         newElem.find('.wsu_id').text(id);
+
+        // if (beginning) {
+        //     studentlist.prepend(newElem);
+        // } else {
+        //     studentlist.append(newElem);
+        // }
+
  
     };
 
@@ -265,10 +287,20 @@ function BeMyTA () {
     var start = function() {
 
         login = $("form#loginForm");
+
+        
         attachLoginHandler();
 
         //add_student = $(".student_info_inputs form#addStudentForm");
         add_student = $("form#addStudentForm");
+        add_student = $(".student_info_inputs form#addStudentForm");
+        // studentlist = $(".studentlist");
+        // stdTemplateHtml = $(".studentlist .student_box")[0].outerHTML;
+        // studentlist.HTML('');
+
+        
+        
+        //add_student = $("form#addStudentForm");
         attachStudentHandler();
 
         add_professor = $("form#addProfessorForm");
@@ -289,3 +321,60 @@ function BeMyTA () {
     };
     
 };
+
+function StudentHomePage() {
+
+
+    var insertStudent = function(name, id, beginning) {
+        // Start with the template, make a new DOM element using jQuery
+
+
+        var newElem = $(stdTemplateHtml);
+
+        newElem.find('.std_name').text(name);
+        newElem.find('.wsu_id').text(id);
+
+        if (beginning) {
+            studentlist.prepend(newElem);
+        } else {
+            studentlist.append(newElem);
+        }
+
+
+    };
+
+    
+    var start = function() {
+
+
+        studentlist = $(".studentlist");
+        stdTemplateHtml = $(".studentlist .student_box")[0].outerHTML;
+        studentlist.html('');
+        var name = localStorage.getItem('name');
+        var id = localStorage.getItem('id');
+        insertStudent(name, id, true);
+        //attachLoginHandler();
+
+
+        
+        
+        //add_student = $("form#addStudentForm");
+        // attachStudentHandler();
+
+        //stdTemplateHtml = $(".studentlist")[0].outerHTML;
+        //insertStudent();
+        
+        //insertStudent(full_name, std_id);
+
+    };
+
+
+// PUBLIC METHODS
+// any private methods returned in the hash are accessible via RateProfessor.key_name, e.g. RateProfessor.start()
+    return {
+        start: start
+    };
+
+};
+
+
