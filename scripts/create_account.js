@@ -7,8 +7,8 @@ function BeMyTA () {
 
     // PRIVATE VARIABLES
 
-    var apiUrl = 'https://bee-myy-taa.herokuapp.com';
-    // var apiUrl = 'http://localhost:5000'; //local
+    //var apiUrl = 'https://bee-myy-taa.herokuapp.com';
+    var apiUrl = 'http://localhost:5000'; //local
 
     var add_student; // add_student form, value set in the "start" method below
 
@@ -376,5 +376,3 @@ function StudentHomePage() {
     };
 
 };
-
-

@@ -26,7 +26,6 @@ class Student(db.Model):
 class Course(db.Model):
     cid = db.Column(db.Integer, primary_key=True)
     ctitle = db.Column(db.String(255))
-    cdescription = db.Column(db.String(255))
     cmaxTA = db.Column(db.Integer)
 
 # Application database
@@ -220,7 +219,6 @@ def row_to_obj_course(row):
     row = {
             "cid": row.cid,
             "ctitle": row.ctitle,
-            "cdescription": row.cdescription,
             "cmaxTA": row.cmaxTA
         }
     return row
