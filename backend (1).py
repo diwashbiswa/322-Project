@@ -43,26 +43,18 @@ class Instructor(db.Model):
 base_url = '/api/'
 
 @app.route(base_url + 'studentCourses', methods=["GET"])
-def getApplication():
+def addApplication(sid, cid):
+    query = Course.query.join(TAAplication, Course.cid == TAAplication.cid).filter(TAAplication.sid == 2).all():
 
-    course_id = request.args.get('cid', None)
-    student_id = request.args.get('sid', None)
+    result = []
+    for row in query:
+        result.append(
+            row_to_obj_studentapplies(row)
+        )
 
-    query_course = Course.query.filter_by(cid=course_id).first()
-    query_student = Student.query.filter_by(sid=student_id).first()
-
-    #query = Course.query.join(TAAplication, Course.cid == TAAplication.cid).filter(TAAplication.sid == student_id).all()
-
-    return jsonify({"status": 1, "course": row_to_obj_course(query_course), "student": row_to_obj_student(query_student)}), 200 #, "course2": result2})
-
-@app.route(base_url + 'studentCourses', methods=["GET"])
-def getAllApplication():
-
-    query_course = Course.query.all()
-    query_student = Student.query.all()
+    return jsonify({"status": 1, "result": result})
 
 
-    return jsonify({"status": 1, "course": row_to_obj_course(query_course), "student": row_to_obj_student(query_student)}), 200
 
 # get student with specific id -- sid -- example url: /api/student?sid=1
 @app.route(base_url + 'student', methods=["GET"])
@@ -128,8 +120,8 @@ def getInstructor():
 
 # creates a student
 @app.route(base_url + 'addStudent', methods=['POST'])
-def add2Student():
-    student = Student(**request.json)
+def add2Student(student):
+    student = Student(**student)
     db.session.add(student)
     db.session.commit()
     db.session.refresh(student)
@@ -139,8 +131,8 @@ def add2Student():
 
 # creates a course
 @app.route(base_url + 'addCourse', methods=['POST'])
-def add2Course():
-    newcourse = Course(**request.json)
+def add2Course(request):
+    newcourse = Course(**request)
     db.session.add(newcourse)
     db.session.commit()
     db.session.refresh(newcourse)
@@ -149,13 +141,13 @@ def add2Course():
 
 # creates TA-application
 @app.route(base_url + 'addTAApplication', methods=['POST'])
-def add2TAApplication():
-    application = TAAplication(**request.json)
+def add2TAApplication(request):
+    application = TAAplication(**request)
     db.session.add(application)
     db.session.commit()
     db.session.refresh(application)
 
-    return jsonify({"status": 1, "application": row_to_obj_studentapplies(application)}), 200
+    return jsonify({"status": 1, "application": row_to_obj_applies(application)}), 200
 
 # creates instructor
 @app.route(base_url + 'addInstructor', methods=['POST'])

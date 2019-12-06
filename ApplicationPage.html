@@ -23,13 +23,15 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <script type="text/javascript" src="scripts/rateprofessor.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script type="text/javascript" src="scripts/create_account.js"></script>
   <script type="text/javascript">
         // This is a jQuery convention to say that once all the files
         // load, the function RateProfessor.start() should run.
         // This function is defined in the rateprofessor.js
        $(function () {
-           ApplicationPage().start();
+        BeMyTA().start();
        });
   </script>
   
@@ -56,72 +58,37 @@
       Apply to be a TA
     </div>
 
-    <section class="application_box">
-      <div class="applicant_full_name">
-        <input type="text" class="firstname_input" placeholder="First Name">
-        <input type="text" class="lastname_input" placeholder="Last Name">
-      </div>
-      <input type="text" class="major_input" placeholder="Major">
-      <div class="GPA_and_GL">
-        <input type="text" class="GPA_input" placeholder="GPA">
-        <label class="grade_label">Grade Level: </label>
-        <select class="grade_input" name="grade">
-          <option value="freshman">Freshman</option>
-          <option value="sophomore">Sophomore</option>
-          <option value="junior">Junior</option>
-          <option value="senior">Senior</option>
-        </select>
-      </div>
+    <form id=TAApplicationForm method="POST">
+      <section class="application_box">
+        <div class="classes_applying_for">
+              <label class="course1_label">Select a course: </label>
+                <select class="course_input" name="course1">
+                  <option value="CptS 121">CptS 121</option>
+                  <option value="CptS 122">CptS 122</option>
+                  <option value="CptS 223">CptS 223</option>
+                  <option value="CptS 321">CptS 321</option>
+                  <option value="CptS 322">CptS 322</option>
+                  <option value="CptS 355">CptS 355</option>
+                </select>
+        </div>
+        <div class="select_button">
+          <button type="submit" class="select_button">Select</button>
+        </div>
+      </section>
 
-      <div class="classes_applying_for">
-            <label class="course1_label">Most preffered course: </label>
-              <select class="course1_input" name="course1">
-                <option value="4">CptS 121</option>
-                <option value="3">CptS 122</option>
-                <option value="2">CptS 223</option>
-                <option value="1">CptS 322</option>
-              </select>
-              <label class="course2_label">Second preffered course: </label>
-              <select class="course2_input" name="course2">
-                <option value="5">CptS 121</option>
-                <option value="4">CptS 122</option>
-                <option value="3">CptS 223</option>
-                <option value="2">CptS 322</option>
-                <option value="1">None</option>
-              </select>
-              <label class="course3_label">Least preffered course: </label>
-              <select class="course3_input" name="course3">
-                <option value="5">CptS 121</option>
-                <option value="4">CptS 122</option>
-                <option value="3">CptS 223</option>
-                <option value="2">CptS 322</option>
-                <option value="1">None</option>
-              </select>
+      <div class="cancel_and_apply">
+        <div class="cancel_button">
+          <form action="student_homepage.html">
+            <button type="select_btn" class="btn btn-outline-warning">Cancel</button>
+          </form> 
+        </div>  
+        <div class="apply_button"> 
+          <button type="select_btn" class="apply_button btn-outline-danger">Apply</button>
+        </div>  
       </div>
-
-      <div class="TA_service">
-          <label class="served_as_TA">Served as TA before? </label>
-          <select class="TA_service_input" name="TA_before">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-          <input type="text" class="TA_class_input" placeholder="If so, which class?">
-      </div>
-
-    </section>
-
-    <div class="cancel_and_apply">
-      <div class="cancel_button">
-        <form action="student_homepage.html">
-          <button type="select_btn" class="btn btn-outline-warning">Cancel</button>
-        </form> 
-      </div>  
-      <div class="apply_button"> 
-        <form action="student_homepage.html">
-          <button type="select_btn" class="btn btn-outline-danger">Apply</button>
-        </form>
-      </div>  
-    </div>
+    
+    </form>
+    
   </div>
 </body>
 

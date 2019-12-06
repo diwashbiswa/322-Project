@@ -95,6 +95,7 @@ function BeMyTA () {
 
                             localStorage.setItem('name', full_name);
                             localStorage.setItem('id', std_id);
+                            localStorage.setItem('sid', sid);
 
                             insertStudent(full_name, std_id, true);
 
@@ -279,6 +280,59 @@ function BeMyTA () {
         });
 
     };
+
+    var attachApplyForTAHandler = function(e) {
+        apply_for_TA.on('click', '.select_button', function(e) {
+            e.preventDefault();
+
+            var chosen_course = apply_for_TA.find('.course_input').val();
+
+
+            //see if the chosen course exist in the database and get its id -- cid
+            var onSuccess = function(data) {
+                var all_courses = data.result;
+      
+                for (var i = 0; i < all_courses.length; i++) {
+                    if (all_courses[i].ctitle == chosen_course) {
+                        var course_id = all_courses[i].cid;
+                        localStorage.setItem('course_id', course_id);
+                    }
+                }
+            }
+
+            var onFailure = function() {
+                console.error('No course found on the server! -- FAILED');
+            };
+
+            //get request to get the course id
+            let getRequestURL = '/api/courses';
+            makeGetRequest(getRequestURL, onSuccess, onFailure);
+        })
+
+        apply_for_TA.on('click', '.apply_button', function (e) {
+            e.preventDefault();
+
+            var onSuccess = function(data) {
+                //segue back to home page with info filled up
+                
+
+                console.log("OnSuccess");
+            }
+
+            var onFailure = function() {
+                console.error('Post TA -- FAILED');
+            };
+            
+            //make post request to the TA application database - posts sid, cid and the status
+            var application = {};
+            application.sid = localStorage.getItem('sid');
+            application.cid = localStorage.getItem('course_id');
+            application.status = "Pending";
+
+            let postRequestURL = '/api/addTAApplication';
+            makePostRequest(postRequestURL, application, onSuccess, onFailure);
+        });
+    };
     
     /**
      * Start the app by displaying the list of the professors and attaching event handlers.
@@ -310,6 +364,9 @@ function BeMyTA () {
         //insertStudent();
         
         //insertStudent(full_name, std_id);
+
+        apply_for_TA = $("form#TAApplicationForm");
+        attachApplyForTAHandler();
 
     };
     
