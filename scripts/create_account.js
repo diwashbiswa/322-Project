@@ -22,6 +22,8 @@ function BeMyTA () {
     var studentlist;
     var stdTemplateHtml;
 
+    var courselist
+    var crsTemplateHtml;
     // PRIVATE METHODS
       
    /*
@@ -95,8 +97,9 @@ function BeMyTA () {
 
                             localStorage.setItem('name', full_name);
                             localStorage.setItem('id', std_id);
+                            localStorage.setItem('sid', sid);
 
-                            insertStudent(full_name, std_id, true);
+                            //insertStudent(full_name, std_id, true);
 
                             //navigate to new page
                             window.location.href = "student_homepage.html";
@@ -141,61 +144,11 @@ function BeMyTA () {
                 makeGetRequest(requestURL, onSuccess, onFailure);
             }
 
-            //let selected_prof_id = $('header .selected_prof').attr('id');
-            //let sample_sid = 8;
                
         });
     };
     
-    // //populates the student homepage with the correct information
-    // var displayStudentHomepage = function() {
-    //     // Prepare the AJAX handlers for success and failure
-    //      var onSuccess = function(data) {
-    //          var jsondata = data.student;
-    //          insertStudent(jsondata, true);
 
-    //      };
-    //      var onFailure = function() { 
-    //          console.error('List all students - Failed'); 
-    //      };
-    //      let requestUrl = '/api/student?sid='+sid;
-    //      makeGetRequest(requestUrl, onSuccess, onFailure);
- 
-    // };
-
-    // var insertStudent = function(name, id) {
-    //     var student_name = $(".std_name");
-    //     var student_id = $(".wsu_id");
-
-    //     // student_name[0].innerText = "Hello";
-    //     // student_id[0].innerText = "Sup";
-
-    //     student_name[0].innerText = name;
-    //     student_id[0].innerText = id;
- 
-    // };
-
-    var insertStudent = function(name, id, beginning) {
-        // Start with the template, make a new DOM element using jQuery
-        //window.location.href = "student_homepage.html";
-        // studentlist = $(".studentlist");
-        // stdTemplateHtml = $(".studentlist .student_box")[0].outerHTML;
-        // studentlist.HTML('');
-
-
-        var newElem = $(stdTemplateHtml);
-  
-        newElem.find('.std_name').text(name);
-        newElem.find('.wsu_id').text(id);
-
-        // if (beginning) {
-        //     studentlist.prepend(newElem);
-        // } else {
-        //     studentlist.append(newElem);
-        // }
-
- 
-    };
 
     /**
      * Add event handlers for submitting the create student form.
@@ -279,6 +232,67 @@ function BeMyTA () {
         });
 
     };
+
+    var attachSelectCourseHandler = function(e) {
+        apply_for_TA.on('click', '.select_button', function(e) {
+            e.preventDefault();
+
+            var chosen_course = apply_for_TA.find('.course_input').val();
+
+
+            //see if the chosen course exist in the database and get its id -- cid
+            var onSuccess = function(data) {
+                var all_courses = data.result;
+      
+                for (var i = 0; i < all_courses.length; i++) {
+                    if (all_courses[i].ctitle == chosen_course) {
+                        var course_id = all_courses[i].cid;
+                        localStorage.setItem('course_id', course_id);
+                        localStorage.setItem('course_title', all_courses[i].ctitle);
+                        localStorage.setItem('course_description', all_courses[i].cdescription);
+                    }
+                }
+            }
+
+            var onFailure = function() {
+                console.error('No course found on the server! -- FAILED');
+            };
+
+            //get request to get the course id
+            let getRequestURL = '/api/courses';
+            makeGetRequest(getRequestURL, onSuccess, onFailure);
+        })
+    };
+
+    var attachApplyForTAHandler = function(e) {
+        apply_for_TA.on('click', '.apply_button', function (e) {
+            e.preventDefault();
+
+            var onSuccess = function(data) {
+                //segue back to home page with info filled up
+                window.location.href = "student_homepage.html";
+                // document.getElementById("course_title").innerHTML = "Course Title: " + localStorage.getItem('course_title');
+                // document.getElementById("course_description").innerHTML = "Course Description: " + localStorage.getItem('course_description');
+                // document.getElementById("status").innerHTML = "STATUS: PENDING";
+
+                console.log("OnSuccess");
+            }
+
+            var onFailure = function() {
+                console.error('Post TA -- FAILED');
+                alert("Request FAILED");
+            };
+            
+            //make post request to the TA application database - posts sid, cid and the status
+            var application = {};
+            application.sid = localStorage.getItem('sid');
+            application.cid = localStorage.getItem('course_id');
+            application.status = "Pending";
+
+            let postRequestURL = '/api/addTAApplication';
+            makePostRequest(postRequestURL, application, onSuccess, onFailure);
+        })
+    }
     
     /**
      * Start the app by displaying the list of the professors and attaching event handlers.
@@ -310,6 +324,10 @@ function BeMyTA () {
         //insertStudent();
         
         //insertStudent(full_name, std_id);
+
+        apply_for_TA = $("form#TAApplicationForm");
+        attachSelectCourseHandler();
+        attachApplyForTAHandler();
 
     };
     
@@ -343,6 +361,26 @@ function StudentHomePage() {
 
     };
 
+    var insertCourse = function(title, description, status, beginning) {
+        // Start with the template, make a new DOM element using jQuery
+
+
+        var newElem = $(crsTemplateHtml);
+
+        newElem.find('.course_title').text(title);
+        newElem.find('.course_description').text(description);
+        newElem.find('.status').text(status);
+
+        if (beginning) {
+            courselist.prepend(newElem);
+        } else {
+            courselist.append(newElem);
+        }
+
+
+    };
+
+
     
     var start = function() {
 
@@ -354,6 +392,14 @@ function StudentHomePage() {
         var id = localStorage.getItem('id');
         insertStudent(name, id, true);
         //attachLoginHandler();
+
+        courselist = $(".courseList");
+        crsTemplateHtml = $(".courseList .course_box")[0].outerHTML;
+        courselist.html('');
+        var course_title = "Course Title: " + localStorage.getItem('course_title');
+        var course_description = "Description: " + localStorage.getItem('course_description');
+        var course_pending = "STATUS: PENDING";
+        insertCourse(course_title, course_description, course_pending, true);
 
 
         
